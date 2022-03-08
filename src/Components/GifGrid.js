@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { getGifs } from '../helpers/getGifs';
 import { GifGridItem } from './GifGridItem';
 
 
@@ -6,39 +7,14 @@ export const GifGrid = ({category}) => {
 
     const [images, setimages] = useState([]);
 
-    useEffect(()=>{
-        getGifs();
+    useEffect( () => {     // permite realizar la ejecucion una vez y no renderiza hasta que cambia la cotegoria
+        getGifs( category )
+        .then( imgs => setimages( imgs )) ;
 
-    },[])
+    },[category])
 
-
-    const getGifs = async()=>{
-
-        const url = 'https://api.giphy.com/v1/gifs/search?q=pokemon&limit=10&api_key=eBty6kaFtl5IBid9W9QsuB6HtJca7SxN';
-        const resp = await fetch( url );
-        const {data} = await resp.json();
-
-
-        const gifs = data.map( img => {
-
-            return{
-
-                id:img.id,
-                title:img.title,
-                url:img.images.downsized_medium.url
-
-
-            }   
-
-
-        })
-
-         
-        console.log(gifs)
-        setimages(gifs);   
-    } 
-
-
+   
+   
 
   return (
 
