@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React  from 'react'
 import { getGifs } from '../helpers/getGifs';
+import { useFetchGifs } from '../Hooks/useFetchGifs';
 import { GifGridItem } from './GifGridItem';
 
 
 export const GifGrid = ({category}) => {
 
-    const [images, setimages] = useState([]);
+    const {data, loading} = useFetchGifs( category);    
 
-    useEffect( () => {     // permite realizar la ejecucion una vez y no renderiza hasta que cambia la cotegoria
-        getGifs( category )
-        .then( imgs => setimages( imgs )) ;
+    // const [images, setimages] = useState([]);
 
-    },[category])
+    
 
    
    
@@ -20,21 +19,21 @@ export const GifGrid = ({category}) => {
 
     <>
          <h3> {category} </h3>
-    
+
+           { loading && <p>Loanding</p> }
         <div className='card-grid'>
             
             
 
                 {
-                    images.map(img=> (
+                    data.map(img=> (
                         <GifGridItem  key={img.id} {...img} />
 
                     ))
 
                 }
 
-            
-
+        
         </div>
     </>
 

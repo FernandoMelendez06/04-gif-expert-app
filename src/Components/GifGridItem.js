@@ -6,7 +6,7 @@ export const GifGridItem = ({id,title,url}) => {
   return (
 
 
-    <div className="card">
+    <div className="card animate__animated animate__bounce">
         <img className="card"  src={url} alt={title}></img>
         <p className="card">{title}</p>
     </div>

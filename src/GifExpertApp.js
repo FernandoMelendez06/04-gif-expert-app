@@ -4,14 +4,9 @@ import { GifGrid } from './Components/GifGrid';
 
 export const GifExpertApp = () => {
 
-    //const categories = ['ONE PUCH','SAMURAI X ', 'NARUTO']
+  
 
     const [categories,setCategories] = useState(['Samuray X']);
-
-//const handleAdd= ()=>{
-   // setCategories([ ...categories, 'HunterXHunter']);
-
-//}
 
 
   return (
@@ -21,7 +16,7 @@ export const GifExpertApp = () => {
         <h1>GifExpertApp</h1>
         <AddCategory setCategories = { setCategories } />
         <hr />
-        {/* <button onClick={handleAdd}>Agregar</button> */}
+       
 
         <ol>
             {
@@ -40,5 +35,3 @@ export const GifExpertApp = () => {
   )
 }
 
-
-//<li key={category}>{category}</li>
